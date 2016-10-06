@@ -2,7 +2,6 @@ c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExcha
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\bin\Debug\StockExchange.exe
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\bin\Debug\StockExchange.pdb
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.csprojResolveAssemblyReference.cache
-c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.Form1.resources
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.Properties.Resources.resources
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.csproj.GenerateResource.Cache
 c:\users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.exe
@@ -11,3 +10,4 @@ C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExcha
 C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.ConfigurePanel.resources
 C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\bin\Debug\log4net.dll
 C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\bin\Debug\log4net.xml
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchange\obj\Debug\StockExchange.MainForm.resources

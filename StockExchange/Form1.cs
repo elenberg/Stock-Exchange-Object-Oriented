@@ -13,19 +13,15 @@ using System.Windows.Forms;
 
 namespace StockExchange
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private CSVHandler csv;
         private Portfolio portfolio;
         private List<Stock> symbols;
-        private SelectStocks s;
+        private SelectStocks selectStocksForm;
         private ConfigurePanel configForm;
-        private StockMarketSimulator SMS;
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(Form1));
-        private readonly Timer _refreshForm = new Timer();
-        private readonly object _myLock = new object();
-
-        public int RefreshFrequency { get; set; }
+        private StockMarketSimulator StockMarket;
+        private int RefreshFrequency { get; set; }
         private InterfacePanel interface1 { get; set; }
         private InterfacePanel interface2 { get; set; }
         private InterfacePanel interface3 { get; set; }
@@ -33,7 +29,11 @@ namespace StockExchange
         private InterfacePanel interface5 { get; set; }
         private InterfacePanel interface6 { get; set; }
 
-        public Form1()
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MainForm));
+        private readonly Timer _refreshForm = new Timer();
+        private readonly object _myLock = new object();
+
+        public MainForm()
         {
             InitializeComponent();
             portfolio = new Portfolio();
@@ -47,9 +47,9 @@ namespace StockExchange
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(SMS != null)
+            if(StockMarket != null)
             {
-                SMS.Stop();
+                StockMarket.Stop();
             }
         }
         // Load from File
@@ -59,32 +59,23 @@ namespace StockExchange
             OpenFileDialog dlg = new OpenFileDialog();
 
             if (dlg.ShowDialog() == DialogResult.OK)
-            {
+           { 
                 string fileName;
                 fileName = dlg.FileName;
                 csv = new CSVHandler(fileName);
                 symbols = csv.fromCSV();
-                addSymbolsToMenu();
+                updateSymbols();
                 
             }
 
         }
 
-        private void addSymbolsToMenu()
-        {
-            if(symbols != null)
-            {
-                updateSymbols();
-
-            }
-        }
-
-        public void updateSymbols()
+        private void updateSymbols()
         {
             Logger.Debug("Updating Symbols");
-            s = new SelectStocks(symbols);
-            s.ShowDialog();
-            ListView items = s.getList();
+            selectStocksForm = new SelectStocks(symbols);
+            selectStocksForm.ShowDialog();
+            ListView items = selectStocksForm.getList();
             portfolio = new Portfolio();
             for (int i = 0; i < items.Items.Count; i++)
             {
@@ -98,23 +89,24 @@ namespace StockExchange
                 {
                     // Do nothing
                 }
-                
             }
-
         }
 
         private void writeToCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            // set a default file name
             savefile.FileName = "unknown.csv";
-            // set filters - this can be done in properties as well
             savefile.Filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter sw = new StreamWriter(savefile.FileName));
-                // TODO
+                using (StreamWriter sw = new StreamWriter(savefile.FileName))
+                {
+                    foreach (Stock symbol in symbols)
+                    {
+                        sw.Write(symbol.Symbol + ", " + symbol.Name);
+                    }
+                }
             }
         }
 
@@ -155,8 +147,8 @@ namespace StockExchange
 
 
                 UDPCommunicator coms = new UDPCommunicator(ipAddress.Text, portBox.Text);
-                SMS = new StockMarketSimulator(coms, portfolio);
-                SMS.startMarket();
+                StockMarket = new StockMarketSimulator(coms, portfolio);
+                StockMarket.startMarket();
                 button1.Enabled = false;
                 StartRefreshTimer();
             }
@@ -174,8 +166,6 @@ namespace StockExchange
             {
                 RefreshFrequency = 3000;
             }
-
-
             _refreshForm.Interval = RefreshFrequency;
             _refreshForm.Tick += refreshTimer_Tick;
             _refreshForm.Start();
@@ -190,9 +180,9 @@ namespace StockExchange
 
         private void RefreshDisplay()
         {
+            // Check flags of interfaces
             if (interface1 != null && interface1.toUpdate)
             {
-
                 interface1.updatePanels();
             }
             if (interface2 != null && interface2.toUpdate)

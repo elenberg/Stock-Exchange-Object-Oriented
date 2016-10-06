@@ -15,19 +15,21 @@ namespace StockExchange
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(ConfigurePanel));
 
-        public Panel p1 { get; set; }
-        public Panel p2 { get; set; }
-        public Panel p3 { get; set; }
-        public Panel p4 { get; set; }
-        public Panel p5 { get; set; }
-        public Panel p6 { get; set; }
+        private Panel p1 { get; set; }
+        private Panel p2 { get; set; }
+        private Panel p3 { get; set; }
+        private Panel p4 { get; set; }
+        private Panel p5 { get; set; }
+        private Panel p6 { get; set; }
+        private Portfolio portfolio { get; set; }
+
+        // These are used outside of this class for retrieving the changes to the panels.
         public InterfacePanel interface1 { get; set; }
         public InterfacePanel interface2 { get; set; }
         public InterfacePanel interface3 { get; set; }
         public InterfacePanel interface4 { get; set; }
         public InterfacePanel interface5 { get; set; }
         public InterfacePanel interface6 { get; set; }
-        private Portfolio portfolio { get; set; }
         
         public ConfigurePanel(Portfolio p, Panel pan1, Panel pan2, Panel pan3, Panel pan4, Panel pan5, Panel pan6, InterfacePanel interface1, InterfacePanel interface2, InterfacePanel interface3, InterfacePanel interface4, InterfacePanel interface5, InterfacePanel interface6)
         {

@@ -40,7 +40,7 @@ namespace StockExchange
                     IPEndPoint remoteEP = null;
                     byte[] received = _myUdpClient.Receive(ref remoteEP);
                     list.Enqueue(received);
-                    Logger.Debug("list size is " + list.Count + " added in");
+                    Logger.Debug("Current Queue Size " + list.Count);
                     waitHandle.Set();
                 }
                 catch (Exception e)
@@ -50,11 +50,11 @@ namespace StockExchange
             }
         }
 
-        public void Start(AutoResetEvent wait, StockMarketSimulator s)
+        public void Start(StockMarketSimulator s)
         {
             sms = s;
             Done = false;
-            waitHandle = wait;
+            waitHandle = new AutoResetEvent(false);
             listener = new Thread(new ThreadStart(Listen));
             listener.Start();
             Thread consumer = new Thread(new ThreadStart(consume));
@@ -65,7 +65,6 @@ namespace StockExchange
         {
             while (!Done)
             {
-                // Add message handling in here.
                 waitHandle.WaitOne();
                 while (list.Count != 0)
                 {
@@ -79,7 +78,6 @@ namespace StockExchange
             listener.Join();
             StreamStocksMessage temp = new StreamStocksMessage();
             Send(temp.Encode());
-            // Send goodbye message
         }
         public void Send(byte[] outbound)
         {

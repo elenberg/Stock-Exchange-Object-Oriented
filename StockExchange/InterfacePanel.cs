@@ -21,9 +21,9 @@ namespace StockExchange
     }
     public class StockPricePanel : InterfacePanel
     {
-        public Chart chart1 { get; set; }
-        public Stock stock { get; set; }
-        Series series1 { get; set; }
+        private Chart chart1 { get; set; }
+        private Stock stock { get; set; }
+        private Series series1 { get; set; }
         
         public StockPricePanel(Stock s, Panel p) : base(p)
         {
@@ -72,8 +72,8 @@ namespace StockExchange
     }
     public class StockVolumePanel : InterfacePanel
     {
-        public Chart chart1 { get; set; }
-        public Stock stock { get; set; }
+        private Chart chart1 { get; set; }
+        private Stock stock { get; set; }
         Series series1 { get; set; }
 
         public StockVolumePanel(Stock s, Panel p) : base(p)
@@ -130,7 +130,8 @@ namespace StockExchange
 
         public PortFolioPanel(Portfolio p, bool open, Panel pa) : base(pa)
         {
-            
+            // Create the datatable and datagrid. This part is messy. Not sure how I could clean it 
+            // up at all. Since I need to create the columns individually.
             dataGrid = new DataGridView();
             portfolio = p;
             portfolio.Register(this);
@@ -164,8 +165,10 @@ namespace StockExchange
                 dtColumn.Caption = "Close Price";
                 table.Columns.Add(dtColumn);
             }
+
             table.TableName = "Portfolio";
             table.Rows.Clear();
+
             foreach(Dictionary<String, String> item in items)
             {
                 DataRow d = table.NewRow();
@@ -184,12 +187,14 @@ namespace StockExchange
             dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrid.Invalidate();
         }
+
         public override void Update(Context c)
         {
             items = (List<Dictionary<String, String>>)c.getContents();
             toUpdate = true;
             
         }
+
         public override void updatePanels()
         {
             table.Rows.Clear();
@@ -220,7 +225,7 @@ namespace StockExchange
     }
     public abstract class InterfaceDecorator : InterfacePanel
     {
-        public InterfacePanel interPanel { get; set; }
+        protected InterfacePanel interPanel { get; set; }
         public InterfaceDecorator(Panel p, InterfacePanel interPanel) : base(p)
         {
             this.interPanel = interPanel;

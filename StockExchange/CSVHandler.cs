@@ -9,7 +9,7 @@ namespace StockExchange
 {
     class CSVHandler
     {
-        public String FileLocation { get; set; }
+        private String FileLocation { get; set; }
         public CSVHandler(String location)
         {
             FileLocation = location;

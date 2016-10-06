@@ -1,0 +1,10 @@
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\StockExchangeTests.dll
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\StockExchangeTests.pdb
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\StockExchange.exe
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\log4net.dll
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\StockExchange.pdb
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\bin\Debug\log4net.xml
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\obj\Debug\StockExchangeTests.csprojResolveAssemblyReference.cache
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\obj\Debug\StockExchangeTests.dll
+C:\Users\bootcamp\documents\visual studio 2015\Projects\StockExchange\StockExchangeTests\obj\Debug\StockExchangeTests.pdb

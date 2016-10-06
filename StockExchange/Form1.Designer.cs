@@ -1,6 +1,6 @@
 ﻿namespace StockExchange
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -60,7 +60,7 @@
             this.HeaderPanel.Controls.Add(this.portLabel);
             this.HeaderPanel.Controls.Add(this.iplabel);
             this.HeaderPanel.Controls.Add(this.ipAddress);
-            this.HeaderPanel.Location = new System.Drawing.Point(16, 36);
+            this.HeaderPanel.Location = new System.Drawing.Point(16, 47);
             this.HeaderPanel.Name = "HeaderPanel";
             this.HeaderPanel.Size = new System.Drawing.Size(1505, 62);
             this.HeaderPanel.TabIndex = 0;
@@ -213,7 +213,7 @@
             this.configurePanelsToolStripMenuItem.Text = "Configure Panels";
             this.configurePanelsToolStripMenuItem.Click += new System.EventHandler(this.configurePanelsToolStripMenuItem_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +227,7 @@
             this.Controls.Add(this.topLeft);
             this.Controls.Add(this.HeaderPanel);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "StockExchange";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.HeaderPanel.ResumeLayout(false);

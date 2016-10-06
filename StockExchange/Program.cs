@@ -13,16 +13,14 @@ namespace StockExchange
         /// The main entry point for the application.
         /// </summary>
         private static readonly ILog Logger = LogManager.GetLogger("Program.cs");
-        public static Form1 MyForm { get; set; }
         /// 
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MyForm = new Form1();
             Logger.Debug("Started Program");
-            Application.Run(MyForm);
+            Application.Run(new MainForm());
             System.Environment.Exit(1);
    
         }
