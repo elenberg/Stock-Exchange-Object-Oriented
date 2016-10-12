@@ -137,35 +137,25 @@ namespace StockExchange
             portfolio.Register(this);
             items = portfolio.updateMessages();
             table = new DataTable();
-            DataColumn dtColumn = new DataColumn();
-            dtColumn.ColumnName = "Symbol";
-            dtColumn.Caption = "Symbol";
-            table.Columns.Add(dtColumn);
-            dtColumn = new DataColumn();
-            dtColumn.ColumnName = "Current";
-            dtColumn.Caption = "Current";
-            table.Columns.Add(dtColumn);
-            dtColumn = new DataColumn();
-            dtColumn.ColumnName = "BidPrice";
-            dtColumn.Caption = "Bid Price";
-            table.Columns.Add(dtColumn);
-            dtColumn = new DataColumn();
-            dtColumn.ColumnName = "AskPrice";
-            dtColumn.Caption = "Ask Price";
-            table.Columns.Add(dtColumn);
+            string[] listofstrings;
             if (open)
             {
-
-                dtColumn = new DataColumn();
-                dtColumn.ColumnName = "OpenPrice";
-                dtColumn.Caption = "Open Price";
-                table.Columns.Add(dtColumn);
-                dtColumn = new DataColumn();
-                dtColumn.ColumnName = "ClosePrice";
-                dtColumn.Caption = "Close Price";
-                table.Columns.Add(dtColumn);
+                listofstrings = new string[] { "Symbol", "Current", "BidPrice", "AskPrice", "OpenPrice", "ClosePrice" };
+            }
+            else
+            {
+                listofstrings = new string[] { "Symbol", "Current", "BidPrice", "AskPrice" };
             }
 
+            DataColumn dtColumn;
+            foreach (String item in listofstrings)
+            {
+                dtColumn = new DataColumn();
+                dtColumn.ColumnName = item;
+                dtColumn.Caption = item;
+                table.Columns.Add(dtColumn);
+
+            }
             table.TableName = "Portfolio";
             table.Rows.Clear();
 

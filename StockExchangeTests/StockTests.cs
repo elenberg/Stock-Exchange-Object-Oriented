@@ -8,37 +8,39 @@ using System.Threading.Tasks;
 
 namespace StockExchange.Tests
 {
+   
     [TestClass()]
     public class StockTests
     {
-        [TestMethod()]
-        public void StockTest()
+        private Stock s { get; set; }
+        [TestInitialize]
+        public void setUP()
         {
-            Assert.Fail();
-        }
+            s = new Stock("ABCG", "NAME");
+            
 
-        [TestMethod()]
-        public void toRowTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void toStringTest()
-        {
-            Assert.Fail();
         }
 
         [TestMethod()]
         public void UpdateTest()
         {
-            Assert.Fail();
+            TickerMessage m1 = new TickerMessage()
+            {
+                Symbol = "ABCG",
+                MessageTimestamp = DateTime.Now,
+                OpeningPrice = 1001,
+                PreviousClosingPrice = 1002,
+                CurrentPrice = 1003,
+                AskPrice = 1004,
+                BidPrice = 1005,
+                CurrentVolume = 1006,
+                AverageVolume = 1007
+            };
+            s.Update(m1);
+            Assert.AreEqual(m1.OpeningPrice, s.OpeningPrice);
+            Assert.AreEqual(m1.CurrentPrice, s.CurrentPrice);
+            Assert.AreEqual(m1.AskPrice, s.AskPrice);
         }
 
-        [TestMethod()]
-        public void NotifyTest()
-        {
-            Assert.Fail();
-        }
     }
 }

@@ -78,6 +78,7 @@ namespace StockExchange
             listener.Join();
             StreamStocksMessage temp = new StreamStocksMessage();
             Send(temp.Encode());
+            Console.WriteLine("Sent closing message");
         }
         public void Send(byte[] outbound)
         {

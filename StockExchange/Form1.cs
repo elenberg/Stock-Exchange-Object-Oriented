@@ -38,6 +38,7 @@ namespace StockExchange
             InitializeComponent();
             portfolio = new Portfolio();
             Logger.Debug("Form1 created.");
+            this.FormClosed += MyClosedHandler;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,12 +46,16 @@ namespace StockExchange
             Logger.Debug("Form1 created.");
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        protected void MyClosedHandler(object sender, EventArgs e)
         {
-            if(StockMarket != null)
+            if (StockMarket != null)
             {
                 StockMarket.Stop();
             }
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
         // Load from File
         private void loadFromCSVToolStripMenuItem_Click(object sender, EventArgs e)

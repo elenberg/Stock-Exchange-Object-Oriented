@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StockExchange.Tests
 {
@@ -17,6 +18,7 @@ namespace StockExchange.Tests
         public void setUp()
         {
             portfolio = new Portfolio();
+
         }
 
         [TestMethod()]
@@ -47,25 +49,28 @@ namespace StockExchange.Tests
         [TestMethod()]
         public void UpdateTest()
         {
-            Assert.Fail();
-        }
+            // Tests Notify, UpdateMessages, MessageToString
 
-        [TestMethod()]
-        public void updateMessagesTest()
-        {
-            Assert.Fail();
-        }
+            PortFolioPanel p = new PortFolioPanel(portfolio, true, new Panel());
+            portfolio.Register(p);
+            portfolio.addStock(new Stock("ABCG  ", "NAME"), "ABCG  ");
+            Assert.IsFalse(p.toUpdate);
+            TickerMessage m1 = new TickerMessage()
+            {
+                Symbol = "ABCG",
+                MessageTimestamp = DateTime.Now,
+                OpeningPrice = 1001,
+                PreviousClosingPrice = 1002,
+                CurrentPrice = 1003,
+                AskPrice = 1004,
+                BidPrice = 1005,
+                CurrentVolume = 1006,
+                AverageVolume = 1007
+            };
+            portfolio.Update(m1);
+            Assert.IsTrue(p.toUpdate);
 
-        [TestMethod()]
-        public void toMessageTest()
-        {
-            Assert.Fail();
         }
-
-        [TestMethod()]
-        public void NotifyTest()
-        {
-            Assert.Fail();
-        }
+        
     }
 }

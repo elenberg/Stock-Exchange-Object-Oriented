@@ -142,10 +142,12 @@ namespace StockExchange
                 if (!comboBox2.Text.Equals("Portfolio"))
                 {
                     update.Enabled = false;
+                    StockBox.Enabled = true;
                 }
                 else
                 {
                     update.Enabled = true;
+                    StockBox.Enabled = false;
                 }
                 selectionPanel.Visible = true;
             }
